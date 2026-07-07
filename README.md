@@ -94,6 +94,6 @@ php artisan serve
 
 ## Author
 
-**Ahmad Daraa**
+**Ahmad Dura**
 
 Backend Developer (Laravel)
