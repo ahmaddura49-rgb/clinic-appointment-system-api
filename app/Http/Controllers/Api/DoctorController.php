@@ -43,13 +43,14 @@ class DoctorController extends Controller
     public function store(StoreDoctorRequest $request)
     {
         $validatedData = $request->validated();
-
         $user = User::create([
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
             'password' => Hash::make($validatedData['password']),
             'role' => 'doctor',
         ]);
+
+        $user->markEmailAsVerified();
 
         $doctor = Doctor::create([
             'user_id' => $user->id,

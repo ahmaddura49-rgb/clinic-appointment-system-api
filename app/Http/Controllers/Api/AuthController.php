@@ -19,14 +19,19 @@ class AuthController extends Controller
     {
         $validatedData = $request->validated();
 
-        $validatedData['password'] = Hash::make($validatedData['password']);
-
-        $validatedData['role'] = 'patient';
-
-        $user = User::create($validatedData);
+        $user = User::create([
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'password' => Hash::make($validatedData['password']),
+            'role' => 'patient',
+        ]);
 
         $patient = Patient::create([
             'user_id' => $user->id,
+            'phone' => $validatedData['phone'],
+            'date_of_birth' => $validatedData['date_of_birth'],
+            'gender' => $validatedData['gender'],
+            'address' => $validatedData['address'],
         ]);
 
         $user->sendEmailVerificationNotification();

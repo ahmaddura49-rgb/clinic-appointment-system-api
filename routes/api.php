@@ -119,6 +119,12 @@ Route::middleware([
         '/patient/appointments/{appointment}/cancel',
         [PatientProfileController::class, 'cancelAppointment']
     );
+
+
+    Route::get(
+        '/patient/doctors',
+        [DoctorController::class, 'index']
+    );
 });
 
 
